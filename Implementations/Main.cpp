@@ -1,9 +1,10 @@
 #if DEBUG
-#pragma comment(lib, "Tempest_Win32_Debug.lib")
+    #pragma comment(lib, "Tempest_Win32_Debug.lib")
 #else
-#pragma comment(lib, "Tempest_Win32_Release.lib")
+    #pragma comment(lib, "Tempest_Win32_Release.lib")
 #endif
 //=====Engine Includes=====
+#include "stdafx.h"
 #include <Engine/Atom.h>
 #include <Engine/Engine.h>
 #include <Engine/ErrorManager.h>
