@@ -1,1 +1,0 @@
-Put c++ header files here. Game directory by default, other directories can be added. 

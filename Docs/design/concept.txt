@@ -1,8 +1,0 @@
-In the darkness, there is a life that is beginning. It does not yet see itself, or know that it exists, but exist it does. The life is just about to start... And just like that. Did you hear that loud crack? That was the shell of the seed breaking open. 
-
-
---- Design Notes ---
-
-I was playing Skryim, and I noticed that there are long stretches with no music at all. This is something they have done in their games since Morrowind. They spend more time making the world sound alive, making the world sound like the kind of nice place where you would want to spend some time. Then, they put music here and there to make it pop all that more. 
-
-In this game, there should be little to no music. It should be very very simple. 
