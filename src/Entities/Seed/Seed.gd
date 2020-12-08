@@ -1,33 +1,50 @@
-extends Area2D
+extends KinematicBody2D
 
-export var speed = 100
-export var jump_power = 500
+export var speed = 500
+export var jump_power = 1000
+export var gravityForce = 50
+
+var _velocity = Vector2.ZERO
+
+const UP = Vector2.UP
 
 func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
-	var velocity = Vector2()
-	
-	if Input.is_action_pressed("walk_right"):
-		print("right")
-		velocity.x += 1
-	if Input.is_action_pressed("walk_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("jump"):
-		velocity.y += 1
-	
-	var idle = true
-	if velocity.x != 0:
-		$AnimatedSprite.animation = "walk"
-		$AnimatedSprite.flip_h = velocity.x < 0
-		idle = false
-	if velocity.y == 1:
-		$AnimatedSprite.animation = "jump"
-		idle = false
-	if idle:
-		$AnimatedSprite.animation = "idle"
-		
-	position.x += velocity.x * speed * delta
-	position.y += velocity.y * jump_power * delta
+func _physics_process(delta):
+	_check_input()
+	_apply_gravity()
+	_animate()
+	move_and_slide(_velocity, Vector2.UP)
+
+
+func _check_input():
+	# Check left/right move
+	if Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
+		_velocity.x = speed
+	elif Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
+		_velocity.x = -speed
+	else:
+		_velocity.x = 0
+	# Check jump
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		_velocity.y = -jump_power
+
+
+func _apply_gravity():
+	if not is_on_floor():
+		_velocity.y += gravityForce
+
+
+func _animate():
+	if _velocity.y < 0:
+		$AnimatedSprite.play("jump")
+	elif _velocity.x != 0 and _velocity.x > 0:
+		$AnimatedSprite.play("walk")
+		$AnimatedSprite.flip_h = false
+	elif _velocity.x != 0 and _velocity.x < 0:
+		$AnimatedSprite.play("walk")
+		$AnimatedSprite.flip_h = true
+	else:
+		$AnimatedSprite.play("idle")
