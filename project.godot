@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="EveningStar"
-run/main_scene="res://src/Levels/Demo/One.tscn"
+run/main_scene="res://src/Levels/Demo/Simple_no_geometry.tscn"
 config/icon="res://icon.png"
 
 [input]
